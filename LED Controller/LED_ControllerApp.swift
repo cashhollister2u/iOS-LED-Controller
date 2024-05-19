@@ -6,27 +6,30 @@
 //
 
 import SwiftUI
-import SwiftData
 
 @main
-struct LED_ControllerApp: App {
-    var sharedModelContainer: ModelContainer = {
-        let schema = Schema([
-            Item.self,
-        ])
-        let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
-
-        do {
-            return try ModelContainer(for: schema, configurations: [modelConfiguration])
-        } catch {
-            fatalError("Could not create ModelContainer: \(error)")
-        }
-    }()
-
+struct LED_Controller: App {
+    var apiModel = ApiConnectModel()
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            TabView {
+                SelectionView()
+                    .tabItem {
+                        Label("Home", systemImage: "house")
+                    }
+                    .background(Color.black)
+                
+                SettingsView()
+                    .tabItem {
+                        Label("Settings", systemImage: "gear")
+                    }
+                    .background(Color.black)
+            }
+            .background(Color.black)
+            .accentColor(.white)
+            .environment(\.colorScheme, .dark)
+            .environmentObject(apiModel)
+            
         }
-        .modelContainer(sharedModelContainer)
     }
 }

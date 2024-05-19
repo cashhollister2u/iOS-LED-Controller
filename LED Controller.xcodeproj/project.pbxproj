@@ -7,14 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2A7D24682BF91223005B6052 /* ComponentsSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7D24672BF91223005B6052 /* ComponentsSettings.swift */; };
+		2A7D246C2BF91C47005B6052 /* SelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7D246B2BF91C47005B6052 /* SelectionView.swift */; };
+		2A7D246E2BF91C58005B6052 /* ComponentsSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7D246D2BF91C58005B6052 /* ComponentsSelection.swift */; };
 		2AA124C92BF7DEC50009D93C /* LED_ControllerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA124C82BF7DEC50009D93C /* LED_ControllerApp.swift */; };
-		2AA124CB2BF7DEC50009D93C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA124CA2BF7DEC50009D93C /* ContentView.swift */; };
+		2AA124CB2BF7DEC50009D93C /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA124CA2BF7DEC50009D93C /* SettingsView.swift */; };
 		2AA124CD2BF7DEC50009D93C /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA124CC2BF7DEC50009D93C /* Item.swift */; };
 		2AA124CF2BF7DEC60009D93C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2AA124CE2BF7DEC60009D93C /* Assets.xcassets */; };
 		2AA124D32BF7DEC60009D93C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2AA124D22BF7DEC60009D93C /* Preview Assets.xcassets */; };
 		2AA124DD2BF7DEC60009D93C /* LED_ControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA124DC2BF7DEC60009D93C /* LED_ControllerTests.swift */; };
 		2AA124E72BF7DEC60009D93C /* LED_ControllerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA124E62BF7DEC60009D93C /* LED_ControllerUITests.swift */; };
 		2AA124E92BF7DEC60009D93C /* LED_ControllerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA124E82BF7DEC60009D93C /* LED_ControllerUITestsLaunchTests.swift */; };
+		2AA124F62BF7E0EB0009D93C /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA124F52BF7E0EB0009D93C /* NetworkManager.swift */; };
+		2AA124F82BF7E1C30009D93C /* ApiConnectModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA124F72BF7E1C30009D93C /* ApiConnectModel.swift */; };
+		2AE4CCE52BFAB87300E55F7F /* spotifyWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE4CCE42BFAB87300E55F7F /* spotifyWebView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,9 +41,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2A7D24672BF91223005B6052 /* ComponentsSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentsSettings.swift; sourceTree = "<group>"; };
+		2A7D246B2BF91C47005B6052 /* SelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionView.swift; sourceTree = "<group>"; };
+		2A7D246D2BF91C58005B6052 /* ComponentsSelection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentsSelection.swift; sourceTree = "<group>"; };
 		2AA124C52BF7DEC50009D93C /* LED Controller.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "LED Controller.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2AA124C82BF7DEC50009D93C /* LED_ControllerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LED_ControllerApp.swift; sourceTree = "<group>"; };
-		2AA124CA2BF7DEC50009D93C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		2AA124CA2BF7DEC50009D93C /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		2AA124CC2BF7DEC50009D93C /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		2AA124CE2BF7DEC60009D93C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2AA124D02BF7DEC60009D93C /* LED_Controller.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LED_Controller.entitlements; sourceTree = "<group>"; };
@@ -47,6 +56,9 @@
 		2AA124E22BF7DEC60009D93C /* LED ControllerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "LED ControllerUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2AA124E62BF7DEC60009D93C /* LED_ControllerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LED_ControllerUITests.swift; sourceTree = "<group>"; };
 		2AA124E82BF7DEC60009D93C /* LED_ControllerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LED_ControllerUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		2AA124F52BF7E0EB0009D93C /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		2AA124F72BF7E1C30009D93C /* ApiConnectModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiConnectModel.swift; sourceTree = "<group>"; };
+		2AE4CCE42BFAB87300E55F7F /* spotifyWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = spotifyWebView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +86,34 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2A7D24662BF91202005B6052 /* SettingsView */ = {
+			isa = PBXGroup;
+			children = (
+				2AA124CA2BF7DEC50009D93C /* SettingsView.swift */,
+				2A7D24672BF91223005B6052 /* ComponentsSettings.swift */,
+			);
+			path = SettingsView;
+			sourceTree = "<group>";
+		};
+		2A7D24692BF917DC005B6052 /* NetworkConnect */ = {
+			isa = PBXGroup;
+			children = (
+				2AA124F72BF7E1C30009D93C /* ApiConnectModel.swift */,
+				2AA124F52BF7E0EB0009D93C /* NetworkManager.swift */,
+				2AE4CCE42BFAB87300E55F7F /* spotifyWebView.swift */,
+			);
+			path = NetworkConnect;
+			sourceTree = "<group>";
+		};
+		2A7D246A2BF91C18005B6052 /* SelectionView */ = {
+			isa = PBXGroup;
+			children = (
+				2A7D246B2BF91C47005B6052 /* SelectionView.swift */,
+				2A7D246D2BF91C58005B6052 /* ComponentsSelection.swift */,
+			);
+			path = SelectionView;
+			sourceTree = "<group>";
+		};
 		2AA124BC2BF7DEC50009D93C = {
 			isa = PBXGroup;
 			children = (
@@ -97,8 +137,10 @@
 		2AA124C72BF7DEC50009D93C /* LED Controller */ = {
 			isa = PBXGroup;
 			children = (
+				2A7D24662BF91202005B6052 /* SettingsView */,
 				2AA124C82BF7DEC50009D93C /* LED_ControllerApp.swift */,
-				2AA124CA2BF7DEC50009D93C /* ContentView.swift */,
+				2A7D246A2BF91C18005B6052 /* SelectionView */,
+				2A7D24692BF917DC005B6052 /* NetworkConnect */,
 				2AA124CC2BF7DEC50009D93C /* Item.swift */,
 				2AA124CE2BF7DEC60009D93C /* Assets.xcassets */,
 				2AA124D02BF7DEC60009D93C /* LED_Controller.entitlements */,
@@ -262,9 +304,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2AA124CB2BF7DEC50009D93C /* ContentView.swift in Sources */,
+				2AA124F62BF7E0EB0009D93C /* NetworkManager.swift in Sources */,
+				2A7D246E2BF91C58005B6052 /* ComponentsSelection.swift in Sources */,
+				2A7D24682BF91223005B6052 /* ComponentsSettings.swift in Sources */,
+				2AA124CB2BF7DEC50009D93C /* SettingsView.swift in Sources */,
 				2AA124CD2BF7DEC50009D93C /* Item.swift in Sources */,
 				2AA124C92BF7DEC50009D93C /* LED_ControllerApp.swift in Sources */,
+				2AE4CCE52BFAB87300E55F7F /* spotifyWebView.swift in Sources */,
+				2A7D246C2BF91C47005B6052 /* SelectionView.swift in Sources */,
+				2AA124F82BF7E1C30009D93C /* ApiConnectModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
