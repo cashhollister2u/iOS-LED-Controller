@@ -20,7 +20,7 @@ struct clockbutton: View {
                 channel = "clock"
                 apiModel.update_user_channel(channel: "clock") { success in
                         if success && apiModel.statusCode == 404 {
-                            apiModel.start_user_thread()
+                            //apiModel.start_user_thread()
                         }
                     }
                 }) {
@@ -48,7 +48,7 @@ struct stockButton: View {
                 channel = "stock"
                 apiModel.update_user_channel(channel: "stock") { success in
                         if success && apiModel.statusCode == 404 {
-                            apiModel.start_user_thread()
+                            //apiModel.start_user_thread()
                         }
                     }
                 }) {
@@ -76,7 +76,7 @@ struct spotifyButton: View {
                 channel = "spotify"
                 apiModel.update_user_channel(channel: "spotify") { success in
                         if success && apiModel.statusCode == 404 {
-                            apiModel.start_user_thread()
+                            //apiModel.start_user_thread()
                         }
                     }
                 }) {

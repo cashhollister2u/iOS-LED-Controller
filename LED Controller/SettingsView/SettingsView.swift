@@ -83,7 +83,7 @@ struct SettingsView: View {
                 Button("Update") {
                     apiModel.update_user_thread { statusCode in
                         if statusCode == 404 {
-                            apiModel.start_user_thread()
+                            apiModel.start_user_thread(client_id: client_id, stock_symbol: stock_symbol, zip_code: zip_code, time_zone: time_zone, country: country)
                         }
                     }
                 }

@@ -54,9 +54,7 @@ struct zipCodeField: View {
                 text: $zip_code
             )
             .textFieldStyle(.roundedBorder)
-            .onChange(of: zip_code) { oldValue, newValue in
-                            UserDefaults.standard.set(newValue, forKey: "zip_code")
-                        }
+            .onChange(of: zip_code) {UserDefaults.standard.set(self.zip_code, forKey: "zip_code")}
         }
     }
 }
@@ -113,9 +111,7 @@ struct timeZoneField: View {
                                 Text(timeZone).tag(timeZone)
                             }
                         }
-            .onChange(of: time_zone) { oldValue, newValue in
-                            UserDefaults.standard.set(newValue, forKey: "time_zone")
-                        }
+            .onChange(of: time_zone) {UserDefaults.standard.set(self.time_zone, forKey: "time_zone")}
         }
     }
 }
@@ -140,9 +136,7 @@ struct countryField: View {
                                 Text(location).tag(location)
                             }
                         }
-            .onChange(of: country) { oldValue, newValue in
-                            UserDefaults.standard.set(newValue, forKey: "country")
-                        }
+            .onChange(of: country) {UserDefaults.standard.set(self.country, forKey: "country")}
         }
     }
 }
@@ -152,7 +146,7 @@ struct spotifyRefreshTokenField: View {
     @Binding var isSpotifyRefreshTokenVisible: Bool
     @Binding var isWebView: Bool
     @EnvironmentObject var apiModel: ApiConnectModel
-
+    
     
     var body: some View {
         VStack(alignment: .leading, spacing:  10) {
@@ -165,38 +159,47 @@ struct spotifyRefreshTokenField: View {
                     .foregroundStyle(Color(.red))
             }
             if isSpotifyRefreshTokenVisible {
+                if let res = apiModel.refresh_token {
+                    TextField(
+                        "Spotify Refresh Token",
+                        text: $spotify_refresh_token
+                    )
+                    .onAppear {
+                        self.spotify_refresh_token = res
+                    }
+                } else {
+                    TextField(
+                        "Spotify Refresh Token",
+                        text: $spotify_refresh_token
+                    )
+                    .textFieldStyle(.roundedBorder)
+                    .onChange(of: spotify_refresh_token) {UserDefaults.standard.set(self.spotify_refresh_token, forKey: "spotify_refresh_token")}
+                }
+            }
+            
+            
+            HStack {
+                if  isSpotifyRefreshTokenVisible {
+                    Button("Get Refresh Token") {
+                        apiModel.get_user_spotify_auth_url()
+                        isWebView = true
+                        
+                    }
+                    .frame(width: 200, height: 40)
+                    .background(Color.blue)
+                    .foregroundColor(.white)
+                    .cornerRadius(10)
+                }
                 
-                TextField(
-                    "Spotify Refresh Token",
-                    text: $spotify_refresh_token
-                )
-                .textFieldStyle(.roundedBorder)
-                .onChange(of: spotify_refresh_token) { oldValue, newValue in
-                    UserDefaults.standard.set(newValue, forKey: "spotify_refresh_token")
+                Spacer()
+                
+                Button(action: {
+                    isSpotifyRefreshTokenVisible.toggle()
+                }) {
+                    Label(isSpotifyRefreshTokenVisible ? "Hide" : "Show", systemImage: isSpotifyRefreshTokenVisible ? "eye.slash" : "eye")
                 }
+                .buttonStyle(BorderlessButtonStyle())
             }
-        }
-        HStack {
-            if  isSpotifyRefreshTokenVisible {
-                Button("Get Refresh Token") {
-                    apiModel.get_user_spotify_auth_url()
-                    isWebView = true
-                    
-                }
-                .frame(width: 200, height: 40)
-                .background(Color.blue)
-                .foregroundColor(.white)
-                .cornerRadius(10)
-            }
-            
-            Spacer()
-            
-            Button(action: {
-                isSpotifyRefreshTokenVisible.toggle()
-            }) {
-                Label(isSpotifyRefreshTokenVisible ? "Hide" : "Show", systemImage: isSpotifyRefreshTokenVisible ? "eye.slash" : "eye")
-            }
-            .buttonStyle(BorderlessButtonStyle())
         }
     }
 }
@@ -222,9 +225,9 @@ struct clientIdField: View {
                     text: $client_id
                 )
                 .textFieldStyle(.roundedBorder)
-                .onChange(of: client_id) { oldValue, newValue in
-                    UserDefaults.standard.set(newValue, forKey: "client_id")
-                }
+                .onChange(of: client_id) {
+                                UserDefaults.standard.set(self.client_id, forKey: "client_id")
+                            }
             }
         }
         HStack {

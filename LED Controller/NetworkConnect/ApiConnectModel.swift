@@ -21,7 +21,7 @@ class ApiConnectModel: ObservableObject {
     let client_secret: String = UserDefaults.standard.string(forKey: "client_secret") ?? ""
     let baseUrl = "http://127.0.0.1:6000"
     
-    func start_user_thread() {
+    func start_user_thread(client_id:String, stock_symbol:String, zip_code:String, time_zone:String, country:String) {
         let urlString = "\(baseUrl)/start/\(client_id)/\(stock_symbol)/\(zip_code)/\(time_zone)/\(country)"
         NetworkManager.shared.fetchData(from: urlString) { result in
             DispatchQueue.main.async {
@@ -90,6 +90,7 @@ class ApiConnectModel: ObservableObject {
                 switch result {
                 case .success(let message):
                     self.statusCode = message.statusCode
+                    self.refresh_token = message.responseBody
                     UserDefaults.standard.set(message.responseBody, forKey: "spotify_refresh_token")
                     print("apiconnect\(message.responseBody)")
                 case .failure(let error):
