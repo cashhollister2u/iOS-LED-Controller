@@ -13,14 +13,21 @@ let button_height:CGFloat = 45
 struct clockbutton: View {
     @Binding var channel: String
     @EnvironmentObject var apiModel: ApiConnectModel
+    @State private var stock_symbol: String = UserDefaults.standard.string(forKey: "stock_symbol") ?? "VOO"
+    @State private var zip_code: String = UserDefaults.standard.string(forKey: "zip_code") ?? "10019"
+    @State private var time_zone: String = UserDefaults.standard.string(forKey: "time_zone") ?? "New_York"
+    @State private var country: String = UserDefaults.standard.string(forKey: "country") ?? "America"
+    @State private var spotify_refresh_token: String = UserDefaults.standard.string(forKey: "spotify_refresh_token") ?? ""
+    @State private var client_id: String = UserDefaults.standard.string(forKey: "client_id") ?? ""
+    @State private var client_secret: String = UserDefaults.standard.string(forKey: "client_secret") ?? ""
     
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
             Button(action: {
                 channel = "clock"
-                apiModel.update_user_channel(channel: "clock") { success in
+                apiModel.update_user_channel(client_id: client_id, channel: "clock") { success in
                         if success && apiModel.statusCode == 404 {
-                            //apiModel.start_user_thread()
+                            apiModel.start_user_thread(client_id: client_id, stock_symbol: stock_symbol, zip_code: zip_code, time_zone: time_zone, country: country,spotify_refresh_token: spotify_refresh_token,channel: channel)
                         }
                     }
                 }) {
@@ -41,14 +48,21 @@ struct clockbutton: View {
 struct stockButton: View {
     @Binding var channel: String
     @EnvironmentObject var apiModel: ApiConnectModel
+    @State private var stock_symbol: String = UserDefaults.standard.string(forKey: "stock_symbol") ?? "VOO"
+    @State private var zip_code: String = UserDefaults.standard.string(forKey: "zip_code") ?? "10019"
+    @State private var time_zone: String = UserDefaults.standard.string(forKey: "time_zone") ?? "New_York"
+    @State private var country: String = UserDefaults.standard.string(forKey: "country") ?? "America"
+    @State private var spotify_refresh_token: String = UserDefaults.standard.string(forKey: "spotify_refresh_token") ?? ""
+    @State private var client_id: String = UserDefaults.standard.string(forKey: "client_id") ?? ""
+    @State private var client_secret: String = UserDefaults.standard.string(forKey: "client_secret") ?? ""
     
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
             Button(action: {
                 channel = "stock"
-                apiModel.update_user_channel(channel: "stock") { success in
+                apiModel.update_user_channel(client_id: client_id, channel: "stock") { success in
                         if success && apiModel.statusCode == 404 {
-                            //apiModel.start_user_thread()
+                            apiModel.start_user_thread(client_id: client_id, stock_symbol: stock_symbol, zip_code: zip_code, time_zone: time_zone, country: country,spotify_refresh_token: spotify_refresh_token,channel: channel)
                         }
                     }
                 }) {
@@ -69,14 +83,21 @@ struct stockButton: View {
 struct spotifyButton: View {
     @Binding var channel: String
     @EnvironmentObject var apiModel: ApiConnectModel
+    @State private var stock_symbol: String = UserDefaults.standard.string(forKey: "stock_symbol") ?? "VOO"
+    @State private var zip_code: String = UserDefaults.standard.string(forKey: "zip_code") ?? "10019"
+    @State private var time_zone: String = UserDefaults.standard.string(forKey: "time_zone") ?? "New_York"
+    @State private var country: String = UserDefaults.standard.string(forKey: "country") ?? "America"
+    @State private var spotify_refresh_token: String = UserDefaults.standard.string(forKey: "spotify_refresh_token") ?? ""
+    @State private var client_id: String = UserDefaults.standard.string(forKey: "client_id") ?? ""
+    @State private var client_secret: String = UserDefaults.standard.string(forKey: "client_secret") ?? ""
     
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
             Button(action: {
                 channel = "spotify"
-                apiModel.update_user_channel(channel: "spotify") { success in
+                apiModel.update_user_channel(client_id: client_id, channel: "spotify") { success in
                         if success && apiModel.statusCode == 404 {
-                            //apiModel.start_user_thread()
+                            apiModel.start_user_thread(client_id: client_id, stock_symbol: stock_symbol, zip_code: zip_code, time_zone: time_zone, country: country,spotify_refresh_token: spotify_refresh_token,channel: channel)
                         }
                     }
                 }) {

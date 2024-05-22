@@ -17,6 +17,7 @@ struct SettingsView: View {
     @State private var spotify_refresh_token: String = UserDefaults.standard.string(forKey: "spotify_refresh_token") ?? ""
     @State private var client_id: String = UserDefaults.standard.string(forKey: "client_id") ?? ""
     @State private var client_secret: String = UserDefaults.standard.string(forKey: "client_secret") ?? ""
+    @State private var channel: String = UserDefaults.standard.string(forKey: "channel") ?? "clock"
     @State private var isSpotifyRefreshTokenVisible: Bool = false
     @State private var isClientIDVisible: Bool = false
     @State private var isClientSecretVisible: Bool = false
@@ -81,9 +82,9 @@ struct SettingsView: View {
                 Spacer()
                 
                 Button("Update") {
-                    apiModel.update_user_thread { statusCode in
+                    apiModel.update_user_thread(client_id: client_id, stock_symbol: stock_symbol, zip_code: zip_code, time_zone: time_zone, country: country) { statusCode in
                         if statusCode == 404 {
-                            apiModel.start_user_thread(client_id: client_id, stock_symbol: stock_symbol, zip_code: zip_code, time_zone: time_zone, country: country)
+                            apiModel.start_user_thread(client_id: client_id, stock_symbol: stock_symbol, zip_code: zip_code, time_zone: time_zone, country: country, spotify_refresh_token: spotify_refresh_token ,channel: channel)
                         }
                     }
                 }

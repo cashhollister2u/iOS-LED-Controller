@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SelectionView: View {
-    @State private var channel: String = UserDefaults.standard.string(forKey: "channel") ?? ""
+    @State private var channel: String = UserDefaults.standard.string(forKey: "channel") ?? "clock"
     @EnvironmentObject var apiModel: ApiConnectModel
     
     var body: some View {
