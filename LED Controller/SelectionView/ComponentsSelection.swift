@@ -28,6 +28,7 @@ struct clockButton: View {
             Button(action: {
                 isLoading = true
                 channel = "clock"
+                progressText = "Loading Display..."
                 Timer.scheduledTimer(withTimeInterval: 10.0, repeats: false) { _ in
                                 progressText = "Manually reset led display"
                             }
@@ -73,6 +74,7 @@ struct stockButton: View {
             Button(action: {
                 isLoading = true
                 channel = "stock"
+                progressText = "Loading Display..."
                 Timer.scheduledTimer(withTimeInterval: 10.0, repeats: false) { _ in
                                 progressText = "Manually reset led display"
                             }
@@ -119,6 +121,7 @@ struct spotifyButton: View {
             Button(action: {
                 isLoading = true
                 channel = "spotify"
+                progressText = "Loading Display..."
                 Timer.scheduledTimer(withTimeInterval: 10.0, repeats: false) { _ in
                                 progressText = "Manually reset led display"
                             }
