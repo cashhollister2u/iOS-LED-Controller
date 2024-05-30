@@ -10,8 +10,9 @@ import SwiftUI
 let button_width:CGFloat = 300
 let button_height:CGFloat = 45
 
-struct clockbutton: View {
+struct clockButton: View {
     @Binding var channel: String
+    @Binding var isLoading: Bool
     @EnvironmentObject var apiModel: ApiConnectModel
     @State private var stock_symbol: String = UserDefaults.standard.string(forKey: "stock_symbol") ?? "VOO"
     @State private var zip_code: String = UserDefaults.standard.string(forKey: "zip_code") ?? "10019"
@@ -24,10 +25,16 @@ struct clockbutton: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
             Button(action: {
-                channel = "clock"
+                isLoading = true
+                
                 apiModel.update_user_channel(client_id: client_id, channel: "clock") { success in
                         if success && apiModel.statusCode == 404 {
                             apiModel.start_user_thread(client_id: client_id, stock_symbol: stock_symbol, zip_code: zip_code, time_zone: time_zone, country: country,spotify_refresh_token: spotify_refresh_token,channel: channel)
+                            isLoading = false
+                            channel = "clock"
+                        } else {
+                            isLoading = false
+                            channel = "clock"
                         }
                     }
                 }) {
@@ -47,6 +54,7 @@ struct clockbutton: View {
 
 struct stockButton: View {
     @Binding var channel: String
+    @Binding var isLoading: Bool
     @EnvironmentObject var apiModel: ApiConnectModel
     @State private var stock_symbol: String = UserDefaults.standard.string(forKey: "stock_symbol") ?? "VOO"
     @State private var zip_code: String = UserDefaults.standard.string(forKey: "zip_code") ?? "10019"
@@ -59,12 +67,19 @@ struct stockButton: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
             Button(action: {
-                channel = "stock"
+                isLoading = true
+                
                 apiModel.update_user_channel(client_id: client_id, channel: "stock") { success in
                         if success && apiModel.statusCode == 404 {
                             apiModel.start_user_thread(client_id: client_id, stock_symbol: stock_symbol, zip_code: zip_code, time_zone: time_zone, country: country,spotify_refresh_token: spotify_refresh_token,channel: channel)
+                            isLoading = false
+                            channel = "stock"
+                        } else{
+                            isLoading = false
+                            channel = "stock"
                         }
                     }
+                
                 }) {
                 Text("Stock")
                     .font(.title3)
@@ -82,6 +97,7 @@ struct stockButton: View {
 
 struct spotifyButton: View {
     @Binding var channel: String
+    @Binding var isLoading: Bool
     @EnvironmentObject var apiModel: ApiConnectModel
     @State private var stock_symbol: String = UserDefaults.standard.string(forKey: "stock_symbol") ?? "VOO"
     @State private var zip_code: String = UserDefaults.standard.string(forKey: "zip_code") ?? "10019"
@@ -94,12 +110,20 @@ struct spotifyButton: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
             Button(action: {
-                channel = "spotify"
+                isLoading = true
+                
                 apiModel.update_user_channel(client_id: client_id, channel: "spotify") { success in
                         if success && apiModel.statusCode == 404 {
                             apiModel.start_user_thread(client_id: client_id, stock_symbol: stock_symbol, zip_code: zip_code, time_zone: time_zone, country: country,spotify_refresh_token: spotify_refresh_token,channel: channel)
+                            isLoading = false
+                            channel = "spotify"
+                        } else {
+                            isLoading = false
+                            channel = "spotify"
                         }
+                            
                     }
+                
                 }) {
                 Text("Spotify")
                     .font(.title3)
