@@ -15,7 +15,7 @@ class ApiConnectModel: ObservableObject {
     //change when api moves to production env
     let baseUrl = "http://127.0.0.1:6000"
     
-    func start_user_thread(client_id:String, stock_symbol:String, zip_code:String, time_zone:String, country:String, spotify_refresh_token:String, channel:String) {
+    func start_user_thread(client_id:String, stock_symbol:String, zip_code:String, time_zone:String, country:String, spotify_refresh_token:String, channel:String, completion: @escaping (Bool) -> Void) {
         let urlString = "\(baseUrl)/start/\(client_id)/\(stock_symbol)/\(zip_code)/\(time_zone)/\(country)/\(spotify_refresh_token)/\(channel)"
         NetworkManager.shared.fetchData(from: urlString) { result in
             DispatchQueue.main.async {
@@ -23,6 +23,7 @@ class ApiConnectModel: ObservableObject {
                 case .success(let message):
                     self.statusCode = message.statusCode
                     self.responseBody = message.responseBody
+                    completion(true)
                 case .failure(let error):
                     self.responseBody = "Error: \(error.localizedDescription)"
                 }

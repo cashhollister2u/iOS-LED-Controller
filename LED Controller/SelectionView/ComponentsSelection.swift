@@ -13,6 +13,7 @@ let button_height:CGFloat = 45
 struct clockButton: View {
     @Binding var channel: String
     @Binding var isLoading: Bool
+    @Binding var progressText: String
     @EnvironmentObject var apiModel: ApiConnectModel
     @State private var stock_symbol: String = UserDefaults.standard.string(forKey: "stock_symbol") ?? "VOO"
     @State private var zip_code: String = UserDefaults.standard.string(forKey: "zip_code") ?? "10019"
@@ -26,15 +27,17 @@ struct clockButton: View {
         VStack(alignment: .leading, spacing: 10) {
             Button(action: {
                 isLoading = true
-                
+                channel = "clock"
+                Timer.scheduledTimer(withTimeInterval: 10.0, repeats: false) { _ in
+                                progressText = "Manually reset led display"
+                            }
                 apiModel.update_user_channel(client_id: client_id, channel: "clock") { success in
                         if success && apiModel.statusCode == 404 {
-                            apiModel.start_user_thread(client_id: client_id, stock_symbol: stock_symbol, zip_code: zip_code, time_zone: time_zone, country: country,spotify_refresh_token: spotify_refresh_token,channel: channel)
-                            isLoading = false
-                            channel = "clock"
+                            apiModel.start_user_thread(client_id: client_id, stock_symbol: stock_symbol, zip_code: zip_code, time_zone: time_zone, country: country,spotify_refresh_token: spotify_refresh_token,channel: channel) { threadSuccess in
+                                isLoading = false
+                            }
                         } else {
                             isLoading = false
-                            channel = "clock"
                         }
                     }
                 }) {
@@ -55,6 +58,7 @@ struct clockButton: View {
 struct stockButton: View {
     @Binding var channel: String
     @Binding var isLoading: Bool
+    @Binding var progressText: String
     @EnvironmentObject var apiModel: ApiConnectModel
     @State private var stock_symbol: String = UserDefaults.standard.string(forKey: "stock_symbol") ?? "VOO"
     @State private var zip_code: String = UserDefaults.standard.string(forKey: "zip_code") ?? "10019"
@@ -68,15 +72,17 @@ struct stockButton: View {
         VStack(alignment: .leading, spacing: 10) {
             Button(action: {
                 isLoading = true
-                
+                channel = "stock"
+                Timer.scheduledTimer(withTimeInterval: 10.0, repeats: false) { _ in
+                                progressText = "Manually reset led display"
+                            }
                 apiModel.update_user_channel(client_id: client_id, channel: "stock") { success in
                         if success && apiModel.statusCode == 404 {
-                            apiModel.start_user_thread(client_id: client_id, stock_symbol: stock_symbol, zip_code: zip_code, time_zone: time_zone, country: country,spotify_refresh_token: spotify_refresh_token,channel: channel)
-                            isLoading = false
-                            channel = "stock"
+                            apiModel.start_user_thread(client_id: client_id, stock_symbol: stock_symbol, zip_code: zip_code, time_zone: time_zone, country: country,spotify_refresh_token: spotify_refresh_token,channel: channel) { threadSuccess in
+                                isLoading = false
+                            }
                         } else{
                             isLoading = false
-                            channel = "stock"
                         }
                     }
                 
@@ -98,6 +104,7 @@ struct stockButton: View {
 struct spotifyButton: View {
     @Binding var channel: String
     @Binding var isLoading: Bool
+    @Binding var progressText: String
     @EnvironmentObject var apiModel: ApiConnectModel
     @State private var stock_symbol: String = UserDefaults.standard.string(forKey: "stock_symbol") ?? "VOO"
     @State private var zip_code: String = UserDefaults.standard.string(forKey: "zip_code") ?? "10019"
@@ -111,17 +118,18 @@ struct spotifyButton: View {
         VStack(alignment: .leading, spacing: 10) {
             Button(action: {
                 isLoading = true
-                
+                channel = "spotify"
+                Timer.scheduledTimer(withTimeInterval: 10.0, repeats: false) { _ in
+                                progressText = "Manually reset led display"
+                            }
                 apiModel.update_user_channel(client_id: client_id, channel: "spotify") { success in
                         if success && apiModel.statusCode == 404 {
-                            apiModel.start_user_thread(client_id: client_id, stock_symbol: stock_symbol, zip_code: zip_code, time_zone: time_zone, country: country,spotify_refresh_token: spotify_refresh_token,channel: channel)
-                            isLoading = false
-                            channel = "spotify"
+                            apiModel.start_user_thread(client_id: client_id, stock_symbol: stock_symbol, zip_code: zip_code, time_zone: time_zone, country: country,spotify_refresh_token: spotify_refresh_token,channel: channel) { threadSuccess in
+                                isLoading = false
+                            }
                         } else {
                             isLoading = false
-                            channel = "spotify"
                         }
-                            
                     }
                 
                 }) {

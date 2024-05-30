@@ -11,6 +11,7 @@ struct SelectionView: View {
     @State private var channel: String = UserDefaults.standard.string(forKey: "channel") ?? ""
     @EnvironmentObject var apiModel: ApiConnectModel
     @State private var isLoading: Bool = false
+    @State private var progressText: String = "Loading Display..."
     
     var body: some View {
         ZStack {
@@ -31,9 +32,9 @@ struct SelectionView: View {
                                 .font(.title2)
                                 .padding(.vertical, 50)
                         }
-                        clockButton(channel: $channel, isLoading: $isLoading)
-                        stockButton(channel: $channel, isLoading: $isLoading)
-                        spotifyButton(channel: $channel, isLoading: $isLoading)
+                        clockButton(channel: $channel, isLoading: $isLoading, progressText: $progressText)
+                        stockButton(channel: $channel, isLoading: $isLoading, progressText: $progressText)
+                        spotifyButton(channel: $channel, isLoading: $isLoading, progressText: $progressText)
                     }
                     .padding(.vertical, 40)
                     
@@ -48,9 +49,10 @@ struct SelectionView: View {
             }
             
             if isLoading {
+                
                 Color.black.opacity(0.85)
                     .edgesIgnoringSafeArea(.all)
-                ProgressView("Loading Display...")
+                ProgressView(progressText)
                     .progressViewStyle(CircularProgressViewStyle())
             }
             
