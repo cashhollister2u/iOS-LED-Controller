@@ -12,8 +12,6 @@ struct SettingsView: View {
     @EnvironmentObject var apiModel: ApiConnectModel
     @State private var stock_symbol: String = UserDefaults.standard.string(forKey: "stock_symbol") ?? "VOO"
     @State private var zip_code: String = UserDefaults.standard.string(forKey: "zip_code") ?? "10019"
-    @State private var time_zone: String = UserDefaults.standard.string(forKey: "time_zone") ?? "New_York"
-    @State private var country: String = UserDefaults.standard.string(forKey: "country") ?? "America"
     @State private var spotify_refresh_token: String = UserDefaults.standard.string(forKey: "spotify_refresh_token") ?? ""
     @State private var client_id: String = UserDefaults.standard.string(forKey: "client_id") ?? ""
     @State private var client_secret: String = UserDefaults.standard.string(forKey: "client_secret") ?? ""
@@ -47,8 +45,7 @@ struct SettingsView: View {
                     
                     stockSymbolField(stock_symbol: $stock_symbol)
                     zipCodeField(zip_code: $zip_code)
-                    countryField(country: $country)
-                    timeZoneField(time_zone: $time_zone, country: $country)
+                    
                 }
                 .padding(.vertical, 10)
                 
@@ -82,13 +79,13 @@ struct SettingsView: View {
                 Spacer()
                 
                 Button("Update") {
-                    apiModel.update_user_thread(client_id: client_id, stock_symbol: stock_symbol, zip_code: zip_code, time_zone: time_zone, country: country) { statusCode in
+                    apiModel.update_user_thread(client_id: client_id, stock_symbol: stock_symbol, zip_code: zip_code) { statusCode in
                         if statusCode == 404 {
-                            apiModel.start_user_thread(client_id: client_id, stock_symbol: stock_symbol, zip_code: zip_code, time_zone: time_zone, country: country, spotify_refresh_token: spotify_refresh_token ,channel: channel) { threadSuccess in }
+                            apiModel.start_user_thread(client_id: client_id, stock_symbol: stock_symbol, zip_code: zip_code, spotify_refresh_token: spotify_refresh_token ,channel: channel) { threadSuccess in }
                         }
                     }
                 }
-                .disabled(stock_symbol.isEmpty || zip_code.isEmpty || time_zone.isEmpty || country.isEmpty || client_id.isEmpty || client_secret.isEmpty)
+                .disabled(stock_symbol.isEmpty || zip_code.isEmpty || client_id.isEmpty || client_secret.isEmpty)
                 .padding()
                 .background(Color.blue)
                 .foregroundColor(.white)

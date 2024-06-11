@@ -13,10 +13,10 @@ class ApiConnectModel: ObservableObject {
     @Published var authUrl: String?
     @Published var refresh_token: String?
     //change when api moves to production env
-    let baseUrl = "http://127.0.0.1:6000"
+    let baseUrl = "http://middleman.local:6000"
     
-    func start_user_thread(client_id:String, stock_symbol:String, zip_code:String, time_zone:String, country:String, spotify_refresh_token:String, channel:String, completion: @escaping (Bool) -> Void) {
-        let urlString = "\(baseUrl)/start/\(client_id)/\(stock_symbol)/\(zip_code)/\(time_zone)/\(country)/\(spotify_refresh_token)/\(channel)"
+    func start_user_thread(client_id:String, stock_symbol:String, zip_code:String, spotify_refresh_token:String, channel:String, completion: @escaping (Bool) -> Void) {
+        let urlString = "\(baseUrl)/start/\(client_id)/\(stock_symbol)/\(zip_code)/\(spotify_refresh_token)/\(channel)"
         NetworkManager.shared.fetchData(from: urlString) { result in
             DispatchQueue.main.async {
                 switch result {
@@ -31,8 +31,8 @@ class ApiConnectModel: ObservableObject {
         }
     }
     
-    func update_user_thread(client_id:String, stock_symbol:String, zip_code:String, time_zone:String, country:String, completion: @escaping (Int) -> Void) {
-        let urlString = "\(baseUrl)/update/\(client_id)/\(stock_symbol)/\(zip_code)/\(time_zone)/\(country)"
+    func update_user_thread(client_id:String, stock_symbol:String, zip_code:String, completion: @escaping (Int) -> Void) {
+        let urlString = "\(baseUrl)/update/\(client_id)/\(stock_symbol)/\(zip_code)"
         NetworkManager.shared.fetchData(from: urlString) { result in
             DispatchQueue.main.async {
                 switch result {
