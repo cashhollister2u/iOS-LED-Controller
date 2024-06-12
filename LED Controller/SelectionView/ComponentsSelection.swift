@@ -25,12 +25,12 @@ struct clockButton: View {
         VStack(alignment: .leading, spacing: 10) {
             Button(action: {
                 isLoading = true
-                channel = "clock"
+                channel = "weather"
                 progressText = "Loading Display..."
                 Timer.scheduledTimer(withTimeInterval: 10.0, repeats: false) { _ in
                                 progressText = "Manually reset led display"
                             }
-                apiModel.update_user_channel(client_id: client_id, channel: "clock") { success in
+                apiModel.update_user_channel(client_id: client_id, channel: "weather") { success in
                         if success && apiModel.statusCode == 404 {
                             apiModel.start_user_thread(client_id: client_id, stock_symbol: stock_symbol, zip_code: zip_code, spotify_refresh_token: spotify_refresh_token,channel: channel) { threadSuccess in
                                 isLoading = false
@@ -40,13 +40,13 @@ struct clockButton: View {
                         }
                     }
                 }) {
-                Text("Clock")
+                Text("Weather")
                     .font(.title3)
                     .frame(width: button_width, height: button_height)
                     .contentShape(Rectangle())
                     .padding(20)
             }
-            .background(channel == "clock" ? Color(red: 0.25, green: 0.25, blue: 0.25) : Color(red: 0.10, green: 0.10, blue: 0.10))
+            .background(channel == "weather" ? Color(red: 0.25, green: 0.25, blue: 0.25) : Color(red: 0.10, green: 0.10, blue: 0.10))
             .cornerRadius(10)
             .shadow(radius: 5)
             .foregroundColor(.white)
