@@ -33,16 +33,11 @@ struct SelectionView: View {
                                 .padding(.vertical, 50)
                         }
                         clockButton(channel: $channel, isLoading: $isLoading, progressText: $progressText)
+                        stock_clock_Button(channel: $channel, isLoading: $isLoading, progressText: $progressText)
                         stockButton(channel: $channel, isLoading: $isLoading, progressText: $progressText)
-                        spotifyButton(channel: $channel, isLoading: $isLoading, progressText: $progressText)
+                        spotify_2_Button(channel: $channel, isLoading: $isLoading, progressText: $progressText)
                     }
                     .padding(.vertical, 40)
-                    
-                    if let statusCode = apiModel.statusCode {
-                        if statusCode == 204 {
-                            Text(channel)
-                        }
-                    }
                 }
                 .padding(.all, 20)
                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
