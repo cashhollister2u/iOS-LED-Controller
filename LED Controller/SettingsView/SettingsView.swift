@@ -12,13 +12,10 @@ struct SettingsView: View {
     @EnvironmentObject var apiModel: ApiConnectModel
     @State private var stock_symbol: String = UserDefaults.standard.string(forKey: "stock_symbol") ?? "VOO"
     @State private var zip_code: String = UserDefaults.standard.string(forKey: "zip_code") ?? "10019"
-    @State private var spotify_refresh_token: String = UserDefaults.standard.string(forKey: "spotify_refresh_token") ?? ""
     @State private var client_id: String = UserDefaults.standard.string(forKey: "client_id") ?? ""
-    @State private var client_secret: String = UserDefaults.standard.string(forKey: "client_secret") ?? ""
     @State private var channel: String = UserDefaults.standard.string(forKey: "channel") ?? "clock"
     @State private var isSpotifyRefreshTokenVisible: Bool = false
     @State private var isClientIDVisible: Bool = false
-    @State private var isClientSecretVisible: Bool = false
     @State private var isWebView = false
     
     
@@ -59,12 +56,10 @@ struct SettingsView: View {
                 }
                 
                 Group{
-                    spotifyRefreshTokenField(spotify_refresh_token: $spotify_refresh_token,
-                                             isSpotifyRefreshTokenVisible: $isSpotifyRefreshTokenVisible,
+                    spotifyRefreshTokenField(isSpotifyRefreshTokenVisible: $isSpotifyRefreshTokenVisible,
                                              isWebView: $isWebView
                     )
                     clientIdField(client_id: $client_id, isClientIDVisible: $isClientIDVisible)
-                    clientSecretField(client_secret: $client_secret, isClientSecretVisible: $isClientSecretVisible)
                 }
                 .padding(.vertical, 10)
                 .fullScreenCover(isPresented: $isWebView) {
@@ -78,22 +73,26 @@ struct SettingsView: View {
                     
                 Spacer()
                 
+                
+            }
+            HStack {
                 Button("Update") {
                     apiModel.update_user_thread(client_id: client_id, stock_symbol: stock_symbol, zip_code: zip_code) { statusCode in
                         if statusCode == 404 {
-                            apiModel.start_user_thread(client_id: client_id, stock_symbol: stock_symbol, zip_code: zip_code, spotify_refresh_token: spotify_refresh_token ,channel: channel) { threadSuccess in }
+                            apiModel.start_user_thread(client_id: client_id, stock_symbol: stock_symbol, zip_code: zip_code , channel: channel) { threadSuccess in }
                         }
                     }
                 }
-                .disabled(stock_symbol.isEmpty || zip_code.isEmpty || client_id.isEmpty || client_secret.isEmpty)
+                .disabled(stock_symbol.isEmpty || zip_code.isEmpty || client_id.isEmpty)
                 .padding()
                 .background(Color.blue)
                 .foregroundColor(.white)
                 .cornerRadius(10)
             }
+            .padding(.vertical, 40)
             }
             .padding(.all, 20)
-            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
         }
     }
     

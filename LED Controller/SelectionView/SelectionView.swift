@@ -30,7 +30,7 @@ struct SelectionView: View {
                         HStack {
                             Text("Select Display")
                                 .font(.title2)
-                                .padding(.vertical, 50)
+                                .padding(.vertical, 30)
                         }
                         clockButton(channel: $channel, isLoading: $isLoading, progressText: $progressText)
                         stock_clock_Button(channel: $channel, isLoading: $isLoading, progressText: $progressText)

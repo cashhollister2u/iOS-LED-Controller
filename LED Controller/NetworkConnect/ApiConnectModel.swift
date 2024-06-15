@@ -9,14 +9,15 @@ import Foundation
 
 class ApiConnectModel: ObservableObject {
     @Published var statusCode: Int?
+    @Published var Spot_Auth_Code: Int?
     @Published var responseBody: String?
     @Published var authUrl: String?
-    @Published var refresh_token: String?
+
     //change when api moves to production env
     let baseUrl = "http://middleman.local:6000"
     
-    func start_user_thread(client_id:String, stock_symbol:String, zip_code:String, spotify_refresh_token:String, channel:String, completion: @escaping (Bool) -> Void) {
-        let urlString = "\(baseUrl)/start/\(client_id)/\(stock_symbol)/\(zip_code)/\(spotify_refresh_token)/\(channel)"
+    func start_user_thread(client_id:String, stock_symbol:String, zip_code:String, channel:String, completion: @escaping (Bool) -> Void) {
+        let urlString = "\(baseUrl)/start/\(client_id)/\(stock_symbol)/\(zip_code)/\(channel)"
         NetworkManager.shared.fetchData(from: urlString) { result in
             DispatchQueue.main.async {
                 switch result {
@@ -84,10 +85,7 @@ class ApiConnectModel: ObservableObject {
             DispatchQueue.main.async {
                 switch result {
                 case .success(let message):
-                    self.statusCode = message.statusCode
-                    self.refresh_token = message.responseBody
-                    UserDefaults.standard.set(message.responseBody, forKey: "spotify_refresh_token")
-                    print("apiconnect\(message.responseBody)")
+                    self.Spot_Auth_Code = message.statusCode
                 case .failure(let error):
                     self.responseBody = "Error: \(error.localizedDescription)"
                 }
