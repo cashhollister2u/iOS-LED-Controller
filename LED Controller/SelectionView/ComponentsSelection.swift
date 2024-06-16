@@ -10,6 +10,64 @@ import SwiftUI
 let button_width:CGFloat = 300
 let button_height:CGFloat = 45
 
+
+struct off_button: View {
+    @Binding var isLoading: Bool
+    @Binding var progressText: String
+    @EnvironmentObject var apiModel: ApiConnectModel
+    @State private var client_id: String = UserDefaults.standard.string(forKey: "client_id") ?? ""
+    @State private var showConfirmationDialog = false
+    
+    var body: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            Button(action: {
+                showConfirmationDialog = true
+                }) {
+                Image(systemName: "power.circle")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 40, height: 40)
+                    .padding(5)
+            }
+            .cornerRadius(10)
+            .shadow(radius: 10)
+            .foregroundColor(.gray)
+            .confirmationDialog(
+                            "Are you sure you want to shut down the display?",
+                            isPresented: $showConfirmationDialog,
+                            titleVisibility: .visible
+                        ) {
+                            Button("Shut Down", role: .destructive) {
+                                startShutdownProcess()
+                            }
+                            Button("Cancel", role: .cancel) { }
+                        }
+                    }
+                }
+    
+    // Function to start the shutdown process
+    private func startShutdownProcess() {
+        isLoading = true
+        progressText = "Shutting Down Display..."
+        
+        let timeoutTimer = Timer.scheduledTimer(withTimeInterval: 5, repeats: false) { _ in
+            if isLoading {
+                progressText = "Failed to Shut Down Display"
+                Timer.scheduledTimer(withTimeInterval: 10.0, repeats: false) { _ in isLoading = false }
+            }
+        }
+        apiModel.turn_off_display(client_id: client_id) { success in
+            timeoutTimer.invalidate()
+            if success {
+                progressText = "Shut Down Successful"
+            } else {
+                progressText = "Failed to Shut Down Display"
+            }
+            Timer.scheduledTimer(withTimeInterval: 5.0, repeats: false) { _ in isLoading = false }
+        }
+    }
+}
+
 struct clockButton: View {
     @Binding var channel: String
     @Binding var isLoading: Bool
@@ -26,7 +84,8 @@ struct clockButton: View {
                 channel = "weather"
                 progressText = "Loading Display..."
                 Timer.scheduledTimer(withTimeInterval: 10.0, repeats: false) { _ in
-                                progressText = "Manually reset led display"
+                            progressText = "Failed to load display"
+                            Timer.scheduledTimer(withTimeInterval: 5.0, repeats: false) { _ in isLoading = false }
                             }
                 apiModel.update_user_channel(client_id: client_id, channel: "weather") { success in
                         if success && apiModel.statusCode == 404 {
@@ -68,7 +127,8 @@ struct stockButton: View {
                 channel = "stock"
                 progressText = "Loading Display..."
                 Timer.scheduledTimer(withTimeInterval: 10.0, repeats: false) { _ in
-                                progressText = "Manually reset led display"
+                            progressText = "Failed to load display"
+                            Timer.scheduledTimer(withTimeInterval: 5.0, repeats: false) { _ in isLoading = false }
                             }
                 apiModel.update_user_channel(client_id: client_id, channel: "stock") { success in
                         if success && apiModel.statusCode == 404 {
@@ -111,7 +171,8 @@ struct stock_clock_Button: View {
                 channel = "clock_stock"
                 progressText = "Loading Display..."
                 Timer.scheduledTimer(withTimeInterval: 10.0, repeats: false) { _ in
-                                progressText = "Manually reset led display"
+                            progressText = "Failed to load display"
+                            Timer.scheduledTimer(withTimeInterval: 5.0, repeats: false) { _ in isLoading = false }
                             }
                 apiModel.update_user_channel(client_id: client_id, channel: "clock_stock") { success in
                         if success && apiModel.statusCode == 404 {
@@ -154,7 +215,8 @@ struct spotifyButton: View {
                 channel = "spotify"
                 progressText = "Loading Display..."
                 Timer.scheduledTimer(withTimeInterval: 10.0, repeats: false) { _ in
-                                progressText = "Manually reset led display"
+                            progressText = "Failed to load display"
+                            Timer.scheduledTimer(withTimeInterval: 5.0, repeats: false) { _ in isLoading = false }
                             }
                 apiModel.update_user_channel(client_id: client_id, channel: "spotify") { success in
                         if success && apiModel.statusCode == 404 {
@@ -197,7 +259,8 @@ struct spotify_2_Button: View {
                 channel = "spotify2"
                 progressText = "Loading Display..."
                 Timer.scheduledTimer(withTimeInterval: 10.0, repeats: false) { _ in
-                                progressText = "Manually reset led display"
+                            progressText = "Failed to load display"
+                            Timer.scheduledTimer(withTimeInterval: 5.0, repeats: false) { _ in isLoading = false }
                             }
                 apiModel.update_user_channel(client_id: client_id, channel: "spotify2") { success in
                         if success && apiModel.statusCode == 404 {

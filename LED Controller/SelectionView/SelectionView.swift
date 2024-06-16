@@ -30,18 +30,25 @@ struct SelectionView: View {
                         HStack {
                             Text("Select Display")
                                 .font(.title2)
-                                .padding(.vertical, 30)
+                                .padding(.vertical, 20)
                         }
                         clockButton(channel: $channel, isLoading: $isLoading, progressText: $progressText)
                         stock_clock_Button(channel: $channel, isLoading: $isLoading, progressText: $progressText)
                         stockButton(channel: $channel, isLoading: $isLoading, progressText: $progressText)
                         spotify_2_Button(channel: $channel, isLoading: $isLoading, progressText: $progressText)
+                        
+                        HStack {
+                            off_button(isLoading: $isLoading, progressText: $progressText)
+                                .padding(.vertical, 20)
+                        }
                     }
                     .padding(.vertical, 40)
                 }
                 .padding(.all, 20)
                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
             }
+            
+            
             
             if isLoading {
                 
