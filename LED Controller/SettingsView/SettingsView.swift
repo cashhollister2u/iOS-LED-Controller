@@ -124,6 +124,8 @@ struct SettingsView: View {
     // Function to start the shutdown process
     private func update_display_data() {
         isLoading = true
+        progressText = "Updating Display Data..."
+        
         Timer.scheduledTimer(withTimeInterval: 10.0, repeats: false) { _ in
             progressText = "Failed to Update Display Data"
             Timer.scheduledTimer(withTimeInterval: 5.0, repeats: false) { _ in isLoading = false }

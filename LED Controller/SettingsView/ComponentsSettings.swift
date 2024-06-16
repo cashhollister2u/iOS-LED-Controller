@@ -64,7 +64,7 @@ struct spotifyRefreshTokenField: View {
     @Binding var isSpotifyRefreshTokenVisible: Bool
     @Binding var isWebView: Bool
     @EnvironmentObject var apiModel: ApiConnectModel
-    
+    @State private var isfirstView = false
     
     var body: some View {
         VStack(alignment: .leading, spacing:  10) {
@@ -73,7 +73,7 @@ struct spotifyRefreshTokenField: View {
                 Spacer()
                 
             }
-            if isSpotifyRefreshTokenVisible && apiModel.Spot_Auth_Code == 204 {
+            if isSpotifyRefreshTokenVisible && apiModel.Spot_Auth_Code == 204 && isfirstView{
                 Text("* Authentication Successful")
                     .foregroundStyle(Color(.green))
             }
@@ -82,6 +82,7 @@ struct spotifyRefreshTokenField: View {
                     Button("Authenticate") {
                         apiModel.get_user_spotify_auth_url()
                         isWebView = true
+                        isfirstView = true
                     }
                     .frame(width: 200, height: 40)
                     .background(Color.blue)
@@ -93,6 +94,9 @@ struct spotifyRefreshTokenField: View {
                 
                 Button(action: {
                     isSpotifyRefreshTokenVisible.toggle()
+                    if isSpotifyRefreshTokenVisible {
+                        isfirstView = false
+                    }
                 }) {
                     Label(isSpotifyRefreshTokenVisible ? "Hide" : "Show", systemImage: isSpotifyRefreshTokenVisible ? "eye.slash" : "eye")
                 }
