@@ -20,6 +20,7 @@
 		2AA124E92BF7DEC60009D93C /* LED_ControllerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA124E82BF7DEC60009D93C /* LED_ControllerUITestsLaunchTests.swift */; };
 		2AA124F62BF7E0EB0009D93C /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA124F52BF7E0EB0009D93C /* NetworkManager.swift */; };
 		2AA124F82BF7E1C30009D93C /* ApiConnectModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA124F72BF7E1C30009D93C /* ApiConnectModel.swift */; };
+		2AC225412C1FDBBC00C93055 /* DataPool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC225402C1FDBBC00C93055 /* DataPool.swift */; };
 		2AE4CCE52BFAB87300E55F7F /* spotifyWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE4CCE42BFAB87300E55F7F /* spotifyWebView.swift */; };
 /* End PBXBuildFile section */
 
@@ -58,6 +59,7 @@
 		2AA124E82BF7DEC60009D93C /* LED_ControllerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LED_ControllerUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		2AA124F52BF7E0EB0009D93C /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		2AA124F72BF7E1C30009D93C /* ApiConnectModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiConnectModel.swift; sourceTree = "<group>"; };
+		2AC225402C1FDBBC00C93055 /* DataPool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataPool.swift; sourceTree = "<group>"; };
 		2AE4CCE42BFAB87300E55F7F /* spotifyWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = spotifyWebView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -145,6 +147,7 @@
 				2AA124CE2BF7DEC60009D93C /* Assets.xcassets */,
 				2AA124D02BF7DEC60009D93C /* LED_Controller.entitlements */,
 				2AA124D12BF7DEC60009D93C /* Preview Content */,
+				2AC225402C1FDBBC00C93055 /* DataPool.swift */,
 			);
 			path = "LED Controller";
 			sourceTree = "<group>";
@@ -238,7 +241,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1530;
-				LastUpgradeCheck = 1530;
+				LastUpgradeCheck = 1540;
 				TargetAttributes = {
 					2AA124C42BF7DEC50009D93C = {
 						CreatedOnToolsVersion = 15.3;
@@ -313,6 +316,7 @@
 				2AE4CCE52BFAB87300E55F7F /* spotifyWebView.swift in Sources */,
 				2A7D246C2BF91C47005B6052 /* SelectionView.swift in Sources */,
 				2AA124F82BF7E1C30009D93C /* ApiConnectModel.swift in Sources */,
+				2AC225412C1FDBBC00C93055 /* DataPool.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -383,6 +387,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -444,6 +449,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -471,6 +477,7 @@
 				CODE_SIGN_ENTITLEMENTS = "LED Controller/LED_Controller.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"LED Controller/Preview Content\"";
 				DEVELOPMENT_TEAM = 4F3UL275NN;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -509,6 +516,7 @@
 				CODE_SIGN_ENTITLEMENTS = "LED Controller/LED_Controller.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"LED Controller/Preview Content\"";
 				DEVELOPMENT_TEAM = 4F3UL275NN;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -546,6 +554,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 4F3UL275NN;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
@@ -569,6 +578,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 4F3UL275NN;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
@@ -591,6 +601,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 4F3UL275NN;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
@@ -613,6 +624,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 4F3UL275NN;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.4;

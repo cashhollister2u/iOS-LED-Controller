@@ -15,7 +15,7 @@ struct off_button: View {
     @Binding var isLoading: Bool
     @Binding var progressText: String
     @EnvironmentObject var apiModel: ApiConnectModel
-    @State private var client_id: String = UserDefaults.standard.string(forKey: "client_id") ?? ""
+    @State private var client_id: String = "cc3c15a0cadf9c"
     @State private var showConfirmationDialog = false
     
     var body: some View {
@@ -69,13 +69,13 @@ struct off_button: View {
 }
 
 struct clockButton: View {
+    @Binding var stock_symbol: String
+    @Binding var zip_code: String
     @Binding var channel: String
     @Binding var isLoading: Bool
     @Binding var progressText: String
     @EnvironmentObject var apiModel: ApiConnectModel
-    @State private var stock_symbol: String = UserDefaults.standard.string(forKey: "stock_symbol") ?? "VOO"
-    @State private var zip_code: String = UserDefaults.standard.string(forKey: "zip_code") ?? "10019"
-    @State private var client_id: String = UserDefaults.standard.string(forKey: "client_id") ?? ""
+    @State private var client_id: String = "cc3c15a0cadf9c"
     
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
@@ -112,13 +112,13 @@ struct clockButton: View {
 }
 
 struct stockButton: View {
+    @Binding var stock_symbol: String
+    @Binding var zip_code: String
     @Binding var channel: String
     @Binding var isLoading: Bool
     @Binding var progressText: String
     @EnvironmentObject var apiModel: ApiConnectModel
-    @State private var stock_symbol: String = UserDefaults.standard.string(forKey: "stock_symbol") ?? "VOO"
-    @State private var zip_code: String = UserDefaults.standard.string(forKey: "zip_code") ?? "10019"
-    @State private var client_id: String = UserDefaults.standard.string(forKey: "client_id") ?? ""
+    @State private var client_id: String = "cc3c15a0cadf9c"
     
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
@@ -156,13 +156,13 @@ struct stockButton: View {
 }
 
 struct stock_clock_Button: View {
+    @Binding var stock_symbol: String
+    @Binding var zip_code: String
     @Binding var channel: String
     @Binding var isLoading: Bool
     @Binding var progressText: String
     @EnvironmentObject var apiModel: ApiConnectModel
-    @State private var stock_symbol: String = UserDefaults.standard.string(forKey: "stock_symbol") ?? "VOO"
-    @State private var zip_code: String = UserDefaults.standard.string(forKey: "zip_code") ?? "10019"
-    @State private var client_id: String = UserDefaults.standard.string(forKey: "client_id") ?? ""
+    @State private var client_id: String = "cc3c15a0cadf9c"
     
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
@@ -199,58 +199,15 @@ struct stock_clock_Button: View {
     }
 }
 
-struct spotifyButton: View {
-    @Binding var channel: String
-    @Binding var isLoading: Bool
-    @Binding var progressText: String
-    @EnvironmentObject var apiModel: ApiConnectModel
-    @State private var stock_symbol: String = UserDefaults.standard.string(forKey: "stock_symbol") ?? "VOO"
-    @State private var zip_code: String = UserDefaults.standard.string(forKey: "zip_code") ?? "10019"
-    @State private var client_id: String = UserDefaults.standard.string(forKey: "client_id") ?? ""
-    
-    var body: some View {
-        VStack(alignment: .leading, spacing: 10) {
-            Button(action: {
-                isLoading = true
-                channel = "spotify"
-                progressText = "Loading Display..."
-                Timer.scheduledTimer(withTimeInterval: 10.0, repeats: false) { _ in
-                            progressText = "Failed to load display"
-                            Timer.scheduledTimer(withTimeInterval: 5.0, repeats: false) { _ in isLoading = false }
-                            }
-                apiModel.update_user_channel(client_id: client_id, channel: "spotify") { success in
-                        if success && apiModel.statusCode == 404 {
-                            apiModel.start_user_thread(client_id: client_id, stock_symbol: stock_symbol, zip_code: zip_code, channel: channel) { threadSuccess in
-                                isLoading = false
-                            }
-                        } else {
-                            isLoading = false
-                        }
-                    }
-                
-                }) {
-                Text("Spotify")
-                    .font(.title3)
-                    .frame(width: button_width, height: button_height)
-                    .contentShape(Rectangle())
-                    .padding(20)
-            }
-            .background(channel == "spotify" ? Color(red: 0.25, green: 0.25, blue: 0.25) : Color(red: 0.10, green: 0.10, blue: 0.10))
-            .cornerRadius(10)
-            .shadow(radius: 5)
-            .foregroundColor(.white)
-        }
-    }
-}
 
 struct spotify_2_Button: View {
+    @Binding var stock_symbol: String
+    @Binding var zip_code: String
     @Binding var channel: String
     @Binding var isLoading: Bool
     @Binding var progressText: String
     @EnvironmentObject var apiModel: ApiConnectModel
-    @State private var stock_symbol: String = UserDefaults.standard.string(forKey: "stock_symbol") ?? "VOO"
-    @State private var zip_code: String = UserDefaults.standard.string(forKey: "zip_code") ?? "10019"
-    @State private var client_id: String = UserDefaults.standard.string(forKey: "client_id") ?? ""
+    @State private var client_id: String = "cc3c15a0cadf9c"
     
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {

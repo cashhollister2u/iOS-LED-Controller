@@ -30,7 +30,6 @@ struct stockSymbolField: View {
             .onChange(of: stock_symbol) { oldValue, newValue in
                             let updatedValue = newValue.uppercased()
                             stock_symbol = updatedValue
-                            UserDefaults.standard.set(updatedValue, forKey: "stock_symbol")
                         }
         }
     }
@@ -54,7 +53,6 @@ struct zipCodeField: View {
                 text: $zip_code
             )
             .textFieldStyle(.roundedBorder)
-            .onChange(of: zip_code) {UserDefaults.standard.set(self.zip_code, forKey: "zip_code")}
         }
     }
 }
@@ -88,6 +86,7 @@ struct spotifyRefreshTokenField: View {
                     .background(Color.blue)
                     .foregroundColor(.white)
                     .cornerRadius(10)
+                    .padding(.vertical, 10)
                 }
                 
                 Spacer()
@@ -106,42 +105,5 @@ struct spotifyRefreshTokenField: View {
     }
 }
         
-struct clientIdField: View {
-    @Binding var client_id: String
-    @Binding var isClientIDVisible: Bool
-    
-    var body: some View {
-        VStack(alignment: .leading, spacing:  10) {
-            HStack {
-                Text("Client Id")
-                Spacer()
-            }
-            if client_id == "" {
-                Text("*Client Id field required")
-                    .foregroundStyle(Color(.red))
-            }
-        }
-        HStack {
-           
-            if isClientIDVisible {
-                
-                TextField(
-                    "Client Id",
-                    text: $client_id
-                )
-                .textFieldStyle(.roundedBorder)
-                .onChange(of: client_id) {
-                                UserDefaults.standard.set(self.client_id, forKey: "client_id")
-                            }
-            }
-            Spacer()
-            Button(action: {
-                isClientIDVisible.toggle()
-            }) {
-                Label(isClientIDVisible ? "Hide" : "Show", systemImage: isClientIDVisible ? "eye.slash" : "eye")
-            }
-            .buttonStyle(BorderlessButtonStyle())
-        }
-    }
-}
+
 

@@ -9,7 +9,11 @@ import SwiftUI
 
 @main
 struct LED_Controller: App {
+    
     var apiModel = ApiConnectModel()
+    var dataModel = DataModel()
+   
+    
     var body: some Scene {
         WindowGroup {
             TabView {
@@ -29,6 +33,7 @@ struct LED_Controller: App {
             .accentColor(.white)
             .environment(\.colorScheme, .dark)
             .environmentObject(apiModel)
+            .environmentObject(dataModel)
             
         }
     }

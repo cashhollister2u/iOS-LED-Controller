@@ -34,7 +34,7 @@ class ApiConnectModel: ObservableObject {
         }
     }
     
-    func update_user_thread(client_id:String, stock_symbol:String, zip_code:String, completion: @escaping (Int) -> Void) {
+    func update_user_thread(client_id:String, stock_symbol:String, zip_code:String) {
         let urlString = "\(baseUrl)/update/\(client_id)/\(stock_symbol)/\(zip_code)"
         NetworkManager.shared.fetchData(from: urlString) { result in
             DispatchQueue.main.async {
@@ -42,7 +42,6 @@ class ApiConnectModel: ObservableObject {
                 case .success(let message):
                     self.statusCode = message.statusCode
                     self.responseBody = message.responseBody
-                    completion(message.statusCode)
                 case .failure(let error):
                     self.responseBody = "Error: \(error.localizedDescription)"
                 }

@@ -8,8 +8,10 @@
 import SwiftUI
 
 struct SelectionView: View {
-    @State private var channel: String = UserDefaults.standard.string(forKey: "channel") ?? ""
     @EnvironmentObject var apiModel: ApiConnectModel
+    @EnvironmentObject var dataModel: DataModel
+    
+    @State private var channel: String = UserDefaults.standard.string(forKey: "channel") ?? ""
     @State private var isLoading: Bool = false
     @State private var progressText: String = "Loading Display..."
     
@@ -32,10 +34,10 @@ struct SelectionView: View {
                                 .font(.title2)
                                 .padding(.vertical, 20)
                         }
-                        clockButton(channel: $channel, isLoading: $isLoading, progressText: $progressText)
-                        stock_clock_Button(channel: $channel, isLoading: $isLoading, progressText: $progressText)
-                        stockButton(channel: $channel, isLoading: $isLoading, progressText: $progressText)
-                        spotify_2_Button(channel: $channel, isLoading: $isLoading, progressText: $progressText)
+                        clockButton(stock_symbol: $dataModel.stockSymbol, zip_code: $dataModel.zipCode, channel: $channel, isLoading: $isLoading, progressText: $progressText)
+                        stock_clock_Button(stock_symbol: $dataModel.stockSymbol, zip_code: $dataModel.zipCode,channel: $channel, isLoading: $isLoading, progressText: $progressText)
+                        stockButton(stock_symbol: $dataModel.stockSymbol, zip_code: $dataModel.zipCode,channel: $channel, isLoading: $isLoading, progressText: $progressText)
+                        spotify_2_Button(stock_symbol: $dataModel.stockSymbol, zip_code: $dataModel.zipCode,channel: $channel, isLoading: $isLoading, progressText: $progressText)
                         
                         HStack {
                             off_button(isLoading: $isLoading, progressText: $progressText)
@@ -47,9 +49,6 @@ struct SelectionView: View {
                 .padding(.all, 20)
                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
             }
-            
-            
-            
             if isLoading {
                 
                 Color.black.opacity(0.85)
@@ -57,7 +56,6 @@ struct SelectionView: View {
                 ProgressView(progressText)
                     .progressViewStyle(CircularProgressViewStyle())
             }
-            
         }
     }
 }

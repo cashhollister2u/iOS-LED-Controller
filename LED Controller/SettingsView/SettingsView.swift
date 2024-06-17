@@ -8,21 +8,22 @@
 import SwiftUI
 
 
-struct SettingsView: View {
+public struct SettingsView: View {
     @EnvironmentObject var apiModel: ApiConnectModel
-    @State private var stock_symbol: String = UserDefaults.standard.string(forKey: "stock_symbol") ?? "VOO"
-    @State private var zip_code: String = UserDefaults.standard.string(forKey: "zip_code") ?? "10019"
-    @State private var client_id: String = UserDefaults.standard.string(forKey: "client_id") ?? ""
-    @State private var channel: String = UserDefaults.standard.string(forKey: "channel") ?? "clock"
+    @EnvironmentObject var dataModel: DataModel
+    
+    @State private var client_id: String = "cc3c15a0cadf9c"
+    @State private var channel: String = UserDefaults.standard.string(forKey: "channel") ?? "weather"
     @State private var isLoading: Bool = false
     @State private var progressText: String = "Updating Display Data..."
     @State private var showConfirmationDialog = false
     @State private var isSpotifyRefreshTokenVisible: Bool = false
-    @State private var isClientIDVisible: Bool = false
     @State private var isWebView = false
     
     
-    var body: some View {
+    
+    
+    public var body: some View {
         ZStack{
             ScrollView {
                 VStack {
@@ -44,8 +45,8 @@ struct SettingsView: View {
                     
                     Group {
                         
-                        stockSymbolField(stock_symbol: $stock_symbol)
-                        zipCodeField(zip_code: $zip_code)
+                        stockSymbolField(stock_symbol: $dataModel.stockSymbol)
+                        zipCodeField(zip_code: $dataModel.zipCode)
                         
                     }
                     .padding(.vertical, 10)
@@ -63,7 +64,6 @@ struct SettingsView: View {
                         spotifyRefreshTokenField(isSpotifyRefreshTokenVisible: $isSpotifyRefreshTokenVisible,
                                                  isWebView: $isWebView
                         )
-                        clientIdField(client_id: $client_id, isClientIDVisible: $isClientIDVisible)
                     }
                     .fullScreenCover(isPresented: $isWebView) {
                         if let urlString = apiModel.authUrl, let url = URL(string: urlString) {
@@ -72,22 +72,19 @@ struct SettingsView: View {
                             }
                         }
                     }
-                    
-                    
                     Spacer()
-                    
-                    
                 }
                 
-                Text("* Updates trigger an additional api request")
-                    .foregroundStyle(Color(.red))
-                    .padding(.top, 20)
-                HStack {
-                    
-                    Button("Update") {
+                
+                VStack {
+                    Text("* Updates trigger an additional api request")
+                        .foregroundStyle(Color(.red))
+                        .padding(.bottom, 10)
+
+                    Button("Save") {
                         showConfirmationDialog = true
                     }
-                    .disabled(stock_symbol.isEmpty || zip_code.isEmpty || client_id.isEmpty)
+                    .disabled(dataModel.stockSymbol.isEmpty || dataModel.zipCode.isEmpty)
                     .padding()
                     .background(Color.blue)
                     .foregroundColor(.white)
@@ -98,14 +95,17 @@ struct SettingsView: View {
                                     titleVisibility: .visible
                                 ) {
                                     Button("Update Data", role: .destructive) {
+                                        dataModel.saveDefaults()
                                         update_display_data()
+                                        
                                     }
                                     Button("Cancel", role: .cancel) { }
                                 }
                 }
+                .padding(.top, 40)
                 
             }
-            .padding(.all, 20)
+            .padding(.all, 1)
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
             
             if isLoading {
@@ -115,30 +115,18 @@ struct SettingsView: View {
                 ProgressView(progressText)
                     .progressViewStyle(CircularProgressViewStyle())
             }
-            
         }
-        
-        
     }
     
     // Function to start the shutdown process
     private func update_display_data() {
         isLoading = true
-        progressText = "Updating Display Data..."
+        progressText = "Display Data Updated"
         
-        Timer.scheduledTimer(withTimeInterval: 10.0, repeats: false) { _ in
-            progressText = "Failed to Update Display Data"
-            Timer.scheduledTimer(withTimeInterval: 5.0, repeats: false) { _ in isLoading = false }
-        }
-        apiModel.update_user_thread(client_id: client_id, stock_symbol: stock_symbol, zip_code: zip_code) { statusCode in
-            if statusCode == 404 {
-                apiModel.start_user_thread(client_id: client_id, stock_symbol: stock_symbol, zip_code: zip_code , channel: channel) { threadSuccess in
-                    isLoading = false
-                }
-            } else {
-                isLoading = false
-            }
-        }
+        apiModel.update_user_thread(client_id: client_id, stock_symbol: dataModel.stockSymbol, zip_code: dataModel.zipCode)
+            
+        Timer.scheduledTimer(withTimeInterval: 2.0, repeats: false) { _ in isLoading = false }
+        
     }
     
 }
