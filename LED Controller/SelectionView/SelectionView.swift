@@ -32,7 +32,7 @@ struct SelectionView: View {
                         HStack {
                             Text("Select Display")
                                 .font(.title2)
-                                .padding(.vertical, 20)
+                                .padding(.vertical, 30)
                         }
                         clockButton(stock_symbol: $dataModel.stockSymbol, zip_code: $dataModel.zipCode, channel: $channel, isLoading: $isLoading, progressText: $progressText)
                         stock_clock_Button(stock_symbol: $dataModel.stockSymbol, zip_code: $dataModel.zipCode,channel: $channel, isLoading: $isLoading, progressText: $progressText)
@@ -41,12 +41,12 @@ struct SelectionView: View {
                         
                         HStack {
                             off_button(isLoading: $isLoading, progressText: $progressText)
-                                .padding(.vertical, 20)
+                                .padding(.top, 40)
                         }
                     }
-                    .padding(.vertical, 40)
+                    .padding(.vertical, 30)
                 }
-                .padding(.all, 20)
+                .padding(.horizontal, 20)
                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
             }
             if isLoading {

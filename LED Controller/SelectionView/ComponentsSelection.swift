@@ -83,10 +83,9 @@ struct clockButton: View {
                 isLoading = true
                 channel = "weather"
                 progressText = "Loading Display..."
-                Timer.scheduledTimer(withTimeInterval: 10.0, repeats: false) { _ in
-                            progressText = "Failed to load display"
-                            Timer.scheduledTimer(withTimeInterval: 5.0, repeats: false) { _ in isLoading = false }
-                            }
+                
+                Timer.scheduledTimer(withTimeInterval: 15.0, repeats: false) { _ in isLoading = false }
+                
                 apiModel.update_user_channel(client_id: client_id, channel: "weather") { success in
                         if success && apiModel.statusCode == 404 {
                             apiModel.start_user_thread(client_id: client_id, stock_symbol: stock_symbol, zip_code: zip_code, channel: channel) { threadSuccess in
@@ -126,10 +125,9 @@ struct stockButton: View {
                 isLoading = true
                 channel = "stock"
                 progressText = "Loading Display..."
-                Timer.scheduledTimer(withTimeInterval: 10.0, repeats: false) { _ in
-                            progressText = "Failed to load display"
-                            Timer.scheduledTimer(withTimeInterval: 5.0, repeats: false) { _ in isLoading = false }
-                            }
+                
+                Timer.scheduledTimer(withTimeInterval: 15.0, repeats: false) { _ in isLoading = false }
+                
                 apiModel.update_user_channel(client_id: client_id, channel: "stock") { success in
                         if success && apiModel.statusCode == 404 {
                             apiModel.start_user_thread(client_id: client_id, stock_symbol: stock_symbol, zip_code: zip_code, channel: channel) { threadSuccess in
@@ -170,10 +168,9 @@ struct stock_clock_Button: View {
                 isLoading = true
                 channel = "clock_stock"
                 progressText = "Loading Display..."
-                Timer.scheduledTimer(withTimeInterval: 10.0, repeats: false) { _ in
-                            progressText = "Failed to load display"
-                            Timer.scheduledTimer(withTimeInterval: 5.0, repeats: false) { _ in isLoading = false }
-                            }
+                
+                Timer.scheduledTimer(withTimeInterval: 15.0, repeats: false) { _ in isLoading = false }
+                
                 apiModel.update_user_channel(client_id: client_id, channel: "clock_stock") { success in
                         if success && apiModel.statusCode == 404 {
                             apiModel.start_user_thread(client_id: client_id, stock_symbol: stock_symbol, zip_code: zip_code, channel: channel) { threadSuccess in
@@ -215,10 +212,9 @@ struct spotify_2_Button: View {
                 isLoading = true
                 channel = "spotify2"
                 progressText = "Loading Display..."
-                Timer.scheduledTimer(withTimeInterval: 10.0, repeats: false) { _ in
-                            progressText = "Failed to load display"
-                            Timer.scheduledTimer(withTimeInterval: 5.0, repeats: false) { _ in isLoading = false }
-                            }
+                
+                Timer.scheduledTimer(withTimeInterval: 15.0, repeats: false) { _ in isLoading = false }
+                
                 apiModel.update_user_channel(client_id: client_id, channel: "spotify2") { success in
                         if success && apiModel.statusCode == 404 {
                             apiModel.start_user_thread(client_id: client_id, stock_symbol: stock_symbol, zip_code: zip_code, channel: channel) { threadSuccess in

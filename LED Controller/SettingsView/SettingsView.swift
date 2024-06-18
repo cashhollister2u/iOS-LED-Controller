@@ -8,7 +8,7 @@
 import SwiftUI
 
 
-public struct SettingsView: View {
+struct SettingsView: View {
     @EnvironmentObject var apiModel: ApiConnectModel
     @EnvironmentObject var dataModel: DataModel
     
@@ -23,7 +23,7 @@ public struct SettingsView: View {
     
     
     
-    public var body: some View {
+    var body: some View {
         ZStack{
             ScrollView {
                 VStack {
@@ -59,7 +59,6 @@ public struct SettingsView: View {
                             .font(.title3)
                             .padding()
                     }
-                    
                     Group{
                         spotifyRefreshTokenField(isSpotifyRefreshTokenVisible: $isSpotifyRefreshTokenVisible,
                                                  isWebView: $isWebView
@@ -74,8 +73,6 @@ public struct SettingsView: View {
                     }
                     Spacer()
                 }
-                
-                
                 VStack {
                     Text("* Updates trigger an additional api request")
                         .foregroundStyle(Color(.red))
@@ -105,7 +102,7 @@ public struct SettingsView: View {
                 .padding(.top, 40)
                 
             }
-            .padding(.all, 1)
+            .padding(.all, 10)
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
             
             if isLoading {
