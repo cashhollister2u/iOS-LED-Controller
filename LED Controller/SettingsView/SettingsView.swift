@@ -75,7 +75,7 @@ struct SettingsView: View {
                     Spacer()
                 }
                 VStack {
-                    Text("* Updates trigger an additional api request")
+                    Text("* Updates trigger additional api requests")
                         .foregroundStyle(Color(.red))
                         .padding(.bottom, 10)
 
@@ -88,7 +88,7 @@ struct SettingsView: View {
                     .foregroundColor(.white)
                     .cornerRadius(10)
                     .confirmationDialog(
-                                    "This will trigger a request from each api",
+                                    "This will trigger a request from the altered api(s)",
                                     isPresented: $showConfirmationDialog,
                                     titleVisibility: .visible
                                 ) {
