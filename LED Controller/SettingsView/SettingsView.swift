@@ -47,9 +47,10 @@ struct SettingsView: View {
                         
                         stockSymbolField(stock_symbol: $dataModel.stockSymbol)
                         zipCodeField(zip_code: $dataModel.zipCode)
+                        brightnessSlider(brightness: $dataModel.brightness)
                         
                     }
-                    .padding(.vertical, 10)
+                    .padding(.vertical, 5)
                     
                     Divider()
                         .colorInvert()
@@ -99,10 +100,10 @@ struct SettingsView: View {
                                     Button("Cancel", role: .cancel) { }
                                 }
                 }
-                .padding(.top, 40)
+                .padding(.top, 30)
                 
             }
-            .padding(.all, 10)
+            .padding(.all, 20)
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
             
             if isLoading {
@@ -120,7 +121,7 @@ struct SettingsView: View {
         isLoading = true
         progressText = "Display Data Updated"
         
-        apiModel.update_user_thread(client_id: client_id, stock_symbol: dataModel.stockSymbol, zip_code: dataModel.zipCode)
+        apiModel.update_user_thread(client_id: client_id, stock_symbol: dataModel.stockSymbol, zip_code: dataModel.zipCode, brightness: dataModel.brightness)
             
         Timer.scheduledTimer(withTimeInterval: 2.0, repeats: false) { _ in isLoading = false }
         

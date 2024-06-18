@@ -6,6 +6,23 @@
 //
 
 import SwiftUI
+import UIKit
+
+struct brightnessSlider: View {
+    @Binding var brightness: Double
+    
+    var body: some View {
+        
+        VStack {
+            HStack{
+                Text("Brightness")
+                Spacer()
+            }
+            Slider(value: $brightness, in: 1...99)
+                }
+           
+            }
+        }
 
 
 struct stockSymbolField: View {

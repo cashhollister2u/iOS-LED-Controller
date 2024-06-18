@@ -75,6 +75,7 @@ struct clockButton: View {
     @Binding var isLoading: Bool
     @Binding var progressText: String
     @EnvironmentObject var apiModel: ApiConnectModel
+    @EnvironmentObject var dataModel: DataModel
     @State private var client_id: String = "cc3c15a0cadf9c"
     
     var body: some View {
@@ -88,7 +89,7 @@ struct clockButton: View {
                 
                 apiModel.update_user_channel(client_id: client_id, channel: "weather") { success in
                         if success && apiModel.statusCode == 404 {
-                            apiModel.start_user_thread(client_id: client_id, stock_symbol: stock_symbol, zip_code: zip_code, channel: channel) { threadSuccess in
+                            apiModel.start_user_thread(client_id: client_id, stock_symbol: stock_symbol, zip_code: zip_code, channel: channel, brightness: dataModel.brightness) { threadSuccess in
                                 isLoading = false
                             }
                         } else {
@@ -117,6 +118,7 @@ struct stockButton: View {
     @Binding var isLoading: Bool
     @Binding var progressText: String
     @EnvironmentObject var apiModel: ApiConnectModel
+    @EnvironmentObject var dataModel: DataModel
     @State private var client_id: String = "cc3c15a0cadf9c"
     
     var body: some View {
@@ -130,7 +132,7 @@ struct stockButton: View {
                 
                 apiModel.update_user_channel(client_id: client_id, channel: "stock") { success in
                         if success && apiModel.statusCode == 404 {
-                            apiModel.start_user_thread(client_id: client_id, stock_symbol: stock_symbol, zip_code: zip_code, channel: channel) { threadSuccess in
+                            apiModel.start_user_thread(client_id: client_id, stock_symbol: stock_symbol, zip_code: zip_code, channel: channel, brightness: dataModel.brightness) { threadSuccess in
                                 isLoading = false
                             }
                         } else{
@@ -160,6 +162,7 @@ struct stock_clock_Button: View {
     @Binding var isLoading: Bool
     @Binding var progressText: String
     @EnvironmentObject var apiModel: ApiConnectModel
+    @EnvironmentObject var dataModel: DataModel
     @State private var client_id: String = "cc3c15a0cadf9c"
     
     var body: some View {
@@ -173,7 +176,7 @@ struct stock_clock_Button: View {
                 
                 apiModel.update_user_channel(client_id: client_id, channel: "clock_stock") { success in
                         if success && apiModel.statusCode == 404 {
-                            apiModel.start_user_thread(client_id: client_id, stock_symbol: stock_symbol, zip_code: zip_code, channel: channel) { threadSuccess in
+                            apiModel.start_user_thread(client_id: client_id, stock_symbol: stock_symbol, zip_code: zip_code, channel: channel, brightness: dataModel.brightness) { threadSuccess in
                                 isLoading = false
                             }
                         } else{
@@ -204,6 +207,7 @@ struct spotify_2_Button: View {
     @Binding var isLoading: Bool
     @Binding var progressText: String
     @EnvironmentObject var apiModel: ApiConnectModel
+    @EnvironmentObject var dataModel: DataModel
     @State private var client_id: String = "cc3c15a0cadf9c"
     
     var body: some View {
@@ -217,7 +221,7 @@ struct spotify_2_Button: View {
                 
                 apiModel.update_user_channel(client_id: client_id, channel: "spotify2") { success in
                         if success && apiModel.statusCode == 404 {
-                            apiModel.start_user_thread(client_id: client_id, stock_symbol: stock_symbol, zip_code: zip_code, channel: channel) { threadSuccess in
+                            apiModel.start_user_thread(client_id: client_id, stock_symbol: stock_symbol, zip_code: zip_code, channel: channel, brightness: dataModel.brightness) { threadSuccess in
                                 isLoading = false
                             }
                         } else {

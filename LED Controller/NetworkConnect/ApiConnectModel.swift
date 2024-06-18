@@ -18,8 +18,8 @@ class ApiConnectModel: ObservableObject {
     let baseUrl = "http://middleman.local:6000"
     
     // routine operation functions
-    func start_user_thread(client_id:String, stock_symbol:String, zip_code:String, channel:String, completion: @escaping (Bool) -> Void) {
-        let urlString = "\(baseUrl)/start/\(client_id)/\(stock_symbol)/\(zip_code)/\(channel)"
+    func start_user_thread(client_id:String, stock_symbol:String, zip_code:String, channel:String, brightness:Double, completion: @escaping (Bool) -> Void) {
+        let urlString = "\(baseUrl)/start/\(client_id)/\(stock_symbol)/\(zip_code)/\(channel)/\(brightness)"
         NetworkManager.shared.fetchData(from: urlString) { result in
             DispatchQueue.main.async {
                 switch result {
@@ -34,8 +34,8 @@ class ApiConnectModel: ObservableObject {
         }
     }
     
-    func update_user_thread(client_id:String, stock_symbol:String, zip_code:String) {
-        let urlString = "\(baseUrl)/update/\(client_id)/\(stock_symbol)/\(zip_code)"
+    func update_user_thread(client_id:String, stock_symbol:String, zip_code:String, brightness:Double) {
+        let urlString = "\(baseUrl)/update/\(client_id)/\(stock_symbol)/\(zip_code)/\(brightness)"
         NetworkManager.shared.fetchData(from: urlString) { result in
             DispatchQueue.main.async {
                 switch result {
