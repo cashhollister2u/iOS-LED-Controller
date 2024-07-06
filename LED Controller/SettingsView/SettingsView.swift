@@ -47,7 +47,7 @@ struct SettingsView: View {
                         
                         stockSymbolField(stock_symbol: $dataModel.stockSymbol)
                         zipCodeField(zip_code: $dataModel.zipCode)
-                        brightnessSlider(brightness: $dataModel.brightness)
+                        //brightnessSlider(brightness: $dataModel.brightness)
                         
                     }
                     .padding(.vertical, 5)
