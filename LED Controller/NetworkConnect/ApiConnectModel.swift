@@ -15,7 +15,7 @@ class ApiConnectModel: ObservableObject {
     @Published var authUrl: String?
 
     //change when api moves to production env
-    let baseUrl = "http://middleman.local:6000"
+    let baseUrl = "http://LedApp.local:6000"
     
     // routine operation functions
     func start_user_thread(client_id:String, stock_symbol:String, zip_code:String, channel:String, brightness:Double, completion: @escaping (Bool) -> Void) {
