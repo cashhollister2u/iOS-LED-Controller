@@ -20,7 +20,7 @@ struct SettingsView: View {
     @State private var isSpotifyRefreshTokenVisible: Bool = false
     @State private var isWebView = false
     
-    
+    //note
     
     
     var body: some View {
