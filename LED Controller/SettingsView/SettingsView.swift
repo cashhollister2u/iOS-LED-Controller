@@ -103,6 +103,7 @@ struct SettingsView: View {
                 .padding(.top, 30)
                 
             }
+            .scrollDismissesKeyboard(.interactively)
             .padding(.all, 20)
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
             
@@ -126,5 +127,6 @@ struct SettingsView: View {
         Timer.scheduledTimer(withTimeInterval: 2.0, repeats: false) { _ in isLoading = false }
         
     }
+    
     
 }
